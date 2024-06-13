@@ -16,6 +16,15 @@ export const generateToken = (user, res) => {
     });
 };
 
+export const verifyToken = (token) => {
+    try {
+      const decoded = jwt.verify(token, jwtSecret);
+      return decoded;
+    } catch (error) {
+      throw new Error('Invalid token');
+    }
+  };
+
 export const clearToken = (res) => {
     res.cookie('token', '', {
         httpOnly: true,
@@ -24,3 +33,4 @@ export const clearToken = (res) => {
         sameSite: 'strict',
       });
 }
+

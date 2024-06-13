@@ -67,7 +67,7 @@ export const usersList = asyncHandler(async (req, res) => {
         Route: GET api/users/
         Purpose: Listing users
     */
-  const users = await User.find({});
+  const users = await User.find({_id : { $ne : req.user.id}});
   res.json(users);
 });
 
@@ -76,7 +76,7 @@ export const userProfile = asyncHandler(async (req, res) => {
         Route: GET api/user/
         Purpose: user Profile
     */
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req.user?.id);
 
   if (user) {
     res.json({
@@ -108,6 +108,7 @@ export const editUser = asyncHandler(async (req, res) => {
     user.isAdmin = isAdmin || user.isAdmin;
 
     const updatedUser = await user.save();
+    
     res.json({
       _id: updatedUser._id,
       fullName: updatedUser.fullName,
@@ -129,7 +130,7 @@ export const deleteUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.body.id);
 
   if (user) {
-    await user.remove();
+    await user.deleteOne();
     res.json({ message: "User removed" });
   } else {
     res.status(404);
