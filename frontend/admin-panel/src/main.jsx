@@ -3,21 +3,16 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import HomePage from './pages/HomePage.jsx'
-import LoginPage from './pages/LoginPage.jsx'
-import RegisterPage from './pages/RegisterPage.jsx'
+import { BrowserRouter} from 'react-router-dom'
+import { Provider } from 'react-redux'
+import store from './app/store.js'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App/>}>
-          <Route index={true} element={<HomePage/>}></Route>
-          <Route path='/login' element={<LoginPage/>}></Route>
-          <Route path='/register' element={<RegisterPage/>}></Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
 )

@@ -1,0 +1,37 @@
+#profile-image-container {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    border-radius: 50%;
+    border: 1px solid rgb(199, 198, 198);
+    overflow: hidden;
+    margin: auto;
+}
+
+#profile-image-container label {
+    cursor: pointer;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bolder;
+    color: rgb(199, 198, 198);
+    z-index: 10;
+    transition: background 300ms ease-in-out;
+}
+
+#profile-image-container label:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+#profile-image-container img {
+    width: 100%;
+    height: auto;
+    object-position: center center;
+}
+
+#profile-image-input {
+    display: none;
+}
