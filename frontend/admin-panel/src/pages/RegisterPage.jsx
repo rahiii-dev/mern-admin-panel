@@ -106,7 +106,7 @@ const RegisterPage = () => {
     formDataToSend.append('profileImage', formData.profileImage);
 
     try {
-      const res = await registerUser(formDataToSend).unwrap();
+      await registerUser(formDataToSend).unwrap();
       setFormData({
         name: '',
         email: '',

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import FormContainer from "../components/FormContainer";
 import { useLoginMutation } from "../app/features/api/userApiSlice";
@@ -19,6 +19,7 @@ const LoginPage = () => {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [loginUser, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
@@ -61,12 +62,14 @@ const LoginPage = () => {
     e.preventDefault();
     if(!validateForm()) return;
     setError("");
+
     try {
       const res = await loginUser(formData).unwrap();
       dispatch(setCredential(res));
-      navigate("/");
+      const redirectTo = location.state?.from || '/';
+      navigate(redirectTo, {replace : true});
     } catch (error) {
-      setError(error.data?.message);
+      setError(error.data?.message || 'Login failed');
     }
   };
 

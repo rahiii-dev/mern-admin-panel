@@ -1,0 +1,1 @@
+export const SERVER_IMG_ENDPOINT = 'http://localhost:5000'

@@ -35,11 +35,6 @@ const Header = () => {
                       </Nav.Link>
                     </LinkContainer>
                   )}
-                  <LinkContainer to="/profile">
-                    <Nav.Link>
-                      <FaUser /> Profile
-                    </Nav.Link>
-                  </LinkContainer>
                   <Button variant="danger" onClick={handleLogout} disabled={isLoading}>Logout</Button>
                 </>
               ) : (

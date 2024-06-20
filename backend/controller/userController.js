@@ -30,8 +30,9 @@ export const createUser = asyncHandler(async (req, res) => {
   /*  
         Route: POST api/auth/register
         Purpose: Create user
-    */
-  const { fullName, email, password, profileImage, isAdmin } = req.body;
+  */
+  const { fullName, email, password, isAdmin} = req.body;
+  const profileImage = "/uploads/" + (req.file ? req.file.filename : 'defaultuser.jpg');
 
   const userExists = await User.findOne({ email });
 
@@ -97,14 +98,23 @@ export const editUser = asyncHandler(async (req, res) => {
         Route: PUT api/user/
         Purpose: edit user Profile
     */
-  const { id, fullName, email, profileImage, isAdmin } = req.body;
+  const { id, fullName, email, isAdmin } = req.body;
+
+  const userExists = await User.findOne({ email, _id : { $ne : id} });
+
+  if (userExists) {
+    res.status(400);
+    throw new Error("User already exists");
+  }
 
   const user = await User.findById(id);
 
   if (user) {
+    const profileImage = req.file ? ("/uploads/" + req.file.filename) : user.profileImage;
+
     user.fullName = fullName || user.fullName;
     user.email = email || user.email;
-    user.profileImage = profileImage || user.profileImage;
+    user.profileImage = profileImage;
     user.isAdmin = isAdmin || user.isAdmin;
 
     const updatedUser = await user.save();
