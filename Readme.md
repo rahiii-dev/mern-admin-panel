@@ -34,7 +34,7 @@ This project is a MERN (MongoDB, Express, React, Node.js) stack admin panel desi
 1. **Clone the repository:**
     ```bash
     git clone https://github.com/rahiii-dev/mern-admin-panel
-    cd admin-panel
+    cd mern-admin-panel
     ```
 
 2. **Install backend dependencies:**
