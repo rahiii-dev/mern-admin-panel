@@ -29,7 +29,7 @@ const UsersList = () => {
         <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>
         </Spinner>
-      ) : users.length > 0 ? (
+      ) : (users && users.length > 0) ? (
         <Table striped>
           <thead>
             <tr>
