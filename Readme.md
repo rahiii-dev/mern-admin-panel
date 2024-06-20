@@ -9,7 +9,6 @@
 - [Usage](#usage)
 - [API Routes](#api-routes)
 - [Environment Variables](#environment-variables)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Description
