@@ -116,7 +116,9 @@ const RegisterPage = () => {
       })
       navigate('/login');
     } catch (error) {
-      setError(error.data?.message || 'Registration failed');
+      if(error.status < 500){
+        setError(error.data?.message || 'Registration failed');
+      }
     }
   };
 

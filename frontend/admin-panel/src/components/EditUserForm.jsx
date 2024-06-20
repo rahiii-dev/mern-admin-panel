@@ -109,7 +109,9 @@ const EditUserForm = ({ userInfo: user, forAdmin }) => {
 
       toast.success("Profile is updated");
     } catch (error) {
-      setError(error.data?.message || "Profile Upate failed");
+      if(error.status < 500){
+        setError(error.data?.message || "Failed to update profile");
+      }
     }
   };
 

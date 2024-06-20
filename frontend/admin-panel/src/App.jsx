@@ -24,9 +24,13 @@ function App() {
         {/* Private Routes */}
         <Route element={<PrivateRoutes />}>
           <Route path="/edit-profile" element={<EditProfile />} />
+        </Route>
+        {/* Admin Routes */}
+        <Route element={<AdminRoutes/>}>
           <Route path="/users-list" element={<UsersList />} />
           <Route path="/users-edit/:userid" element={<EditUser />} />
         </Route>
+        <Route path="/*" element={<Navigate to='/'/>}/>
       </Routes>
 
       <ToastContainer/>
@@ -39,6 +43,12 @@ const PrivateRoutes = () => {
   const location = useLocation();
 
   return user ? <Outlet /> : <Navigate to='/login' state={{from : location.pathname}}/>;
+}
+
+const AdminRoutes = () => {
+  const user = useSelector(state => state.auth.user);
+
+  return user?.isAdmin ? <Outlet /> : <Navigate to='/'/>;
 }
 
 export default App

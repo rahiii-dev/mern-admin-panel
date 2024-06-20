@@ -69,7 +69,9 @@ const LoginPage = () => {
       const redirectTo = location.state?.from || '/';
       navigate(redirectTo, {replace : true});
     } catch (error) {
-      setError(error.data?.message || 'Login failed');
+      if(error.status < 500){
+        setError(error.data?.message || 'Login failed');
+      }
     }
   };
 
