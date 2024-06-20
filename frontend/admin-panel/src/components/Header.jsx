@@ -29,7 +29,7 @@ const Header = () => {
               {user ? (
                 <>
                   {user?.isAdmin && (
-                    <LinkContainer to="/users">
+                    <LinkContainer to="/users-list">
                       <Nav.Link>
                         <FaUser /> Users
                       </Nav.Link>

@@ -5,8 +5,10 @@ import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import EditProfile from "./pages/EditProfile.jsx";
+import UsersList from "./pages/UsersList.jsx";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import EditUser from "./pages/EditUser.jsx";
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
         {/* Private Routes */}
         <Route element={<PrivateRoutes />}>
           <Route path="/edit-profile" element={<EditProfile />} />
+          <Route path="/users-list" element={<UsersList />} />
+          <Route path="/users-edit/:userid" element={<EditUser />} />
         </Route>
       </Routes>
 

@@ -31,10 +31,28 @@ const userApiSlice = createApi({
         body: data,
       }),
     }),
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        url: "/user",
+        method: "DELETE",
+        body: id,
+      }),
+    }),
+    getUserById: builder.query({
+      query : (id) => ({
+        url : `/user/${id}`
+      })
+    }),
+    listusers: builder.query({
+      query : () => ({
+        url : '/users'
+      })
+    }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useEditProfileMutation } =
+export const { useLoginMutation, useRegisterMutation, useLogoutMutation,
+     useEditProfileMutation, useListusersQuery, useDeleteUserMutation, useGetUserByIdQuery } =
   userApiSlice;
 
 export default userApiSlice;
