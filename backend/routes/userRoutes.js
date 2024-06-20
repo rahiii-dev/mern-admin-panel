@@ -10,6 +10,7 @@ router.post('/auth/login', authenticateUser)
       .post('/auth/logout', isAuthenticated, logoutUser)
       .get('/users', isAuthenticated, isAdmin, usersList)
       .get('/user', isAuthenticated, userProfile)
+      .get('/user/:userid', isAuthenticated, userProfile)
       .put('/user', isAuthenticated, upload.single('profileImage'), editUser)
       .delete('/user', isAuthenticated, isAdmin, deleteUser);
 

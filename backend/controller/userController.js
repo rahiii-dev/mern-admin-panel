@@ -68,16 +68,18 @@ export const usersList = asyncHandler(async (req, res) => {
         Route: GET api/users/
         Purpose: Listing users
     */
-  const users = await User.find({_id : { $ne : req.user.id}});
+  const users = await User.find({_id : { $ne : req.user.id}}, {password : 0});
   res.json(users);
 });
 
 export const userProfile = asyncHandler(async (req, res) => {
   /*  
-        Route: GET api/user/
+        Route: GET api/user/ or api/user/:userid
         Purpose: user Profile
-    */
-  const user = await User.findById(req.user?.id);
+  */
+
+  const userId = req.params?.userid || req.user?.id;
+  const user = await User.findById(userId);
 
   if (user) {
     res.json({
